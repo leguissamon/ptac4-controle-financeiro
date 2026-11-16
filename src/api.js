@@ -10,9 +10,10 @@ const MENSAGENS_POR_STATUS = {
   500: 'Erro no servidor. Tente novamente em instantes.',
 };
 
-// Se a resposta vier no envelope { data, meta }, devolve só o "data".
+// Só desembrulha quando "data" é uma lista (o envelope { data, meta }).
+// Um lançamento tem um campo "data" que é texto, e não pode ser confundido com envelope.
 function desembrulhar(resposta) {
-  if (resposta && typeof resposta === 'object' && 'data' in resposta) {
+  if (resposta && typeof resposta === 'object' && Array.isArray(resposta.data)) {
     return resposta.data;
   }
   return resposta;
