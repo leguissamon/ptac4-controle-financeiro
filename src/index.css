@@ -1,4 +1,148 @@
+:root {
+  --cor-fundo: #f4f5f7;
+  --cor-cartao: #ffffff;
+  --cor-texto: #1d2433;
+  --cor-suave: #667085;
+  --cor-borda: #dde1e8;
+  --cor-receita: #0b8a5f;
+  --cor-despesa: #c93a4b;
+  --cor-destaque: #2f4bd8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: system-ui, sans-serif;
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+}
+
+#root {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+:focus-visible {
+  outline: 2px solid var(--cor-destaque);
+  outline-offset: 2px;
+}
+
+.cabecalho {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.cabecalho h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.cabecalho__usuario,
+.busca {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+  color: var(--cor-suave);
+}
+
+.busca {
+  margin-bottom: 1rem;
+}
+
+select,
+input {
+  font: inherit;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--cor-borda);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--cor-texto);
+}
+
+.busca input {
+  width: 100%;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  padding: 0.5rem 0.875rem;
+  border: 0;
+  border-radius: 8px;
+  background: var(--cor-destaque);
+  color: #fff;
+}
+
+.lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.cartao {
+  background: var(--cor-cartao);
+  border: 1px solid var(--cor-borda);
+  border-left-width: 4px;
+  border-radius: 10px;
+  padding: 0.875rem 1rem;
+}
+
+.cartao--receita {
+  border-left-color: var(--cor-receita);
+}
+
+.cartao--despesa {
+  border-left-color: var(--cor-despesa);
+}
+
+.cartao__topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.cartao__titulo {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.cartao__valor--receita {
+  color: var(--cor-receita);
+}
+
+.cartao__valor--despesa {
+  color: var(--cor-despesa);
+}
+
+.cartao__detalhes {
+  margin: 0.25rem 0 0;
+  font-size: 0.875rem;
+  color: var(--cor-suave);
+}
+
+.estado {
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--cor-suave);
+  background: var(--cor-cartao);
+  border: 1px dashed var(--cor-borda);
+  border-radius: 10px;
+}
+
+.estado--erro {
+  color: var(--cor-despesa);
+  border-color: var(--cor-despesa);
 }
