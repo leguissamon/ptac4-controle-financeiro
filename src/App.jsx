@@ -3,6 +3,7 @@ import { apiGet } from './api.js';
 import { filtrarLancamentos } from './utils/filtrar.js';
 import Cabecalho from './components/Cabecalho.jsx';
 import Busca from './components/Busca.jsx';
+import FormLancamento from './components/FormLancamento.jsx';
 import ListaLancamentos from './components/ListaLancamentos.jsx';
 
 export default function App() {
@@ -74,6 +75,12 @@ export default function App() {
     return () => controller.abort();
   }, [usuarioId, tentativa]);
 
+  // Chamado pelo formulário quando a API criou o lançamento.
+  // O novo vai para o começo da lista, sem refazer o GET (RF02).
+  function adicionarLancamento(novo) {
+    setLancamentos((atual) => [novo, ...atual]);
+  }
+
   const visiveis = filtrarLancamentos(lancamentos, busca);
   const semUsuarios = !carregando && !erro && usuarios.length === 0;
 
@@ -88,6 +95,15 @@ export default function App() {
           </p>
         ) : (
           <>
+            {usuarioId && !carregando && !erro && (
+              <FormLancamento
+                key={usuarioId}
+                usuarioId={usuarioId}
+                contas={contas}
+                categorias={categorias}
+                onCriado={adicionarLancamento}
+              />
+            )}
             <Busca valor={busca} onChange={setBusca} />
             <ListaLancamentos
               lancamentos={visiveis}
